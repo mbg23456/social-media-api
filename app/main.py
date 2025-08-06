@@ -23,7 +23,7 @@ app = FastAPI()
 
 # Pre-request CORS setup
 # Determines which origins (sites) are allowed to make requests to the API
-origins = [https://www.google.com, https://www.facebook.com]
+origins = ['https://www.google.com', 'https://www.facebook.com']
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[],
@@ -43,4 +43,4 @@ app.include_router(vote.router)
 # Basic test
 @app.get("/")
 def root():
-    return {"message": "Hello World"}
+    return {"message": "Hello World, introducing a minor change to Docker!"}

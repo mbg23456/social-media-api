@@ -1,0 +1,40 @@
+#version: "3"
+services: 
+  api: 
+    build:
+      context: .
+      dockerfile: Dockerfile
+    depends_on:
+        - postgres
+    image: fastapi-social-media-api:latest
+    #container_name: fastapi_social_media_api
+    ports:
+      - "8000:8000"
+    volumes: # for syncing code changes
+      - ./:/usr/src/app:ro
+    command: conda run --no-capture-output -n webdev uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
+    env_file:
+      - ./.env
+    # volumes:
+    #   - .:/app
+    # depends_on:
+    #   - db
+    # networks:
+    #   - webdev_network
+
+  # postgres is the referenced name for the database service (DATABASE_HOSTNAME in .env)
+  postgres:
+    image: postgres:latest
+    #container_name: fastapi_social_media_db
+    environment:
+      POSTGRES_USER: maxbr
+      POSTGRES_PASSWORD: hello1
+      POSTGRES_DB: fastapi
+
+    # path in the container to write the data to
+    volumes: 
+      - postgres-db:/var/lib/postgresql/data
+
+# we will copy the path to save locally
+volumes:
+  postgres-db:
