@@ -54,9 +54,10 @@ jobs:
           environment-file: environment.yml
           auto-activate-base: false
           activate-environment: myenv
+          channels: conda-forge
+          packages: pytest
       - name: Verify conda environment
         run: conda info --envs
       - name: Test using pytest
         run: |
-          conda install conda-forge::pytest
           pytest
