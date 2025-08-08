@@ -12,6 +12,15 @@ on:
 # Create a job
 jobs:
   job1:
+    env:
+      DATABASE_HOSTNAME: postgres # This is the arbitrary hostname of the PostgreSQL database server
+      DATABASE_PORT: 5432
+      DATABASE_PASSWORD: hello1
+      DATABASE_NAME: fastapi
+      DATABASE_USERNAME: maxbr
+      SECRET_KEY: 120792d0299972e3e2616d8298775102239efd2ff7afade7cc732637ae5836e5
+      ALGORITHM: HS256
+      ACCESS_TOKEN_EXPIRE_MINUTES: 30
     runs-on: ubuntu-latest
 
     # Steps to run in the job
@@ -33,6 +42,7 @@ jobs:
         run: conda info --envs
       - name: Test using pytest
         run: |
+          conda init
           conda activate myenv
           conda install conda-forge::pytest
           pytest
