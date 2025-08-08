@@ -12,15 +12,17 @@ on:
 # Create a job
 jobs:
   job1:
+    environment:
+      name: Configure Testing
     env:
-      DATABASE_HOSTNAME: postgres # This is the arbitrary hostname of the PostgreSQL database server
-      DATABASE_PORT: 5432
-      DATABASE_PASSWORD: hello1
-      DATABASE_NAME: fastapi
-      DATABASE_USERNAME: maxbr
-      SECRET_KEY: 120792d0299972e3e2616d8298775102239efd2ff7afade7cc732637ae5836e5
-      ALGORITHM: HS256
-      ACCESS_TOKEN_EXPIRE_MINUTES: 30
+      DATABASE_HOSTNAME: ${{secrets.DATABASE_HOSTNAME}} # This is the arbitrary hostname of the PostgreSQL database server
+      DATABASE_PORT: ${{secrets.DATABASE_PORT}} # This is the port number of the PostgreSQL database server
+      DATABASE_PASSWORD: ${{secrets.DATABASE_PASSWORD}} # This is the password for the PostgreSQL database
+      DATABASE_NAME: ${{secrets.DATABASE_NAME}} # This is the name of the PostgreSQL database
+      DATABASE_USERNAME: ${{secrets.DATABASE_USERNAME}} # This is the username for the PostgreSQL database
+      SECRET_KEY: ${{secrets.SECRET_KEY}} # This is the secret key used for signing tokens
+      ALGORITHM: ${{secrets.ALGORITHM}} # This is the algorithm used for signing tokens
+      ACCESS_TOKEN_EXPIRE_MINUTES: ${{secrets.ACCESS_TOKEN_EXPIRE_MINUTES}} # This is the
     runs-on: ubuntu-latest
 
     # Steps to run in the job
