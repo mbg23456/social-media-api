@@ -1,0 +1,23 @@
+name: Build and Deploy Code (CI/CD)
+
+# What triggers the workflow to run?
+on:
+  push:
+    branches:
+      - "main"
+  pull_request:
+    branches:
+      - main
+
+# Create a job
+jobs:
+  job1:
+    runs-on: ubuntu-latest
+
+    # Steps to run in the job
+    steps:
+      - name: Pulling git repository
+        uses: actions/checkout@v4
+
+      - name: Say hello
+        run: echo "Hello, World!"

@@ -33,12 +33,6 @@ def test_delete_vote_non_exist(authorised_client, test_posts):
     assert res.status_code == 404
 
 
-# def test_vote_post_non_exist(authorised_client, test_posts):
-#     res = authorised_client.post(
-#         "/vote/", json={"post_id": 80000, "dir": 1})
-#     assert res.status_code == 404
-
-
 def test_vote_unauthorised_user(client, test_posts):
     res = client.post(
         "/vote/", json={"post_id": test_posts[3].id, "dir": 1})
