@@ -59,5 +59,7 @@ jobs:
       - name: Verify conda environment
         run: conda info --envs
       - name: Test using pytest
+        shell: bash -l {0}
         run: |
+          conda activate myenv
           pytest
