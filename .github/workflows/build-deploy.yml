@@ -42,7 +42,5 @@ jobs:
         run: conda info --envs
       - name: Test using pytest
         run: |
-          conda init
-          conda activate myenv
           conda install conda-forge::pytest
           pytest
