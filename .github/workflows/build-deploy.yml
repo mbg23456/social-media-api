@@ -31,3 +31,8 @@ jobs:
           activate-environment: myenv
       - name: Verify conda environment
         run: conda info --envs
+      - name: Test using pytest
+        run: |
+          conda activate myenv
+          conda install conda-forge::pytest
+          pytest
