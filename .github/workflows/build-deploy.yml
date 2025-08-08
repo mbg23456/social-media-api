@@ -34,7 +34,7 @@ jobs:
         ports:
           - 5432:5432 # This is the port number
         options: >- # This is the options for the PostgreSQL database
-          --health-cmd pg_isready -U 
+          --health-cmd pg_isready
           --health-interval 10s 
           --health-timeout 5s 
           --health-retries 5
