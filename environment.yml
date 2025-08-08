@@ -79,6 +79,7 @@ dependencies:
   - python-multipart=0.0.20
   - python-tzdata=2025.2
   - python_abi=3.13
+  - pytest = 8.4.1
   - pytz=2025.2
   - pyyaml=6.0.2
   - readline=8.2

@@ -18,19 +18,25 @@ def login(user_credentials: OAuth2PasswordRequestForm = Depends(), # user creden
            db: Session = Depends(database.get_db)): # A sql session with dependencies of database input parameter
                                                     # same as in the database.py file
 
+
+    # Check for emtpy fields
+    if not user_credentials.username or not user_credentials.password:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST, detail="Username and password are required")
+
+
     # check if the user exists
     user = db.query(models.User).filter(
         models.User.email == user_credentials.username).first()
 
-    # if user does not exist, raise an error
     if not user:
         raise HTTPException(
-            status_code=status.HTTP_404_NOT_FOUND, detail=f"Invalid Credentials")
+            status_code=status.HTTP_403_FORBIDDEN, detail=f"Invalid Credentials")
 
     # if the password does not match, raise an error
     if not utils.verify(user_credentials.password, user.password):
         raise HTTPException(
-            status_code=status.HTTP_404_NOT_FOUND, detail=f"Invalid Credentials")
+            status_code=status.HTTP_403_FORBIDDEN, detail=f"Invalid Credentials")
 
     # Otherwise ...
 
