@@ -32,7 +32,7 @@ jobs:
           POSTGRES_USER: ${{secrets.DATABASE_USERNAME}} # This is the username for the PostgreSQL database
           POSTGRES_PASSWORD: ${{secrets.DATABASE_PASSWORD}} # This is the password for the PostgreSQL database
         ports:
-          - ${{secrets.DATABASE_PORT}}:5432 # This is the port number
+          - 5432:5432 # This is the port number
         options: >- # This is the options for the PostgreSQL database
           --health-cmd pg_isready -U 
           --health-interval 10s 
