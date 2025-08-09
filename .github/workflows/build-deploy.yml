@@ -11,7 +11,7 @@ on:
 
 # Create a job
 jobs:
-  job1:
+  job1-build:
     environment:
       name: Configure Testing
     env:
@@ -81,7 +81,7 @@ jobs:
           file: ./Dockerfile
           builder: ${{ steps.buildx.outputs.name }}
           push: true
-          tags: bengotch/social-media-api:latest
+          tags: dockamak/social-media-api:latest-tag-here
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache
       - name: Image digest
